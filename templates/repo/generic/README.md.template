@@ -1,0 +1,92 @@
+# {{FULL_REPO_NAME}}
+
+> {{REPO_DESCRIPTION}}
+> Type: {{REPO_TYPE}}
+
+## Architecture
+
+This repository is part of the CaddyCart ecosystem and serves as a {{REPO_TYPE}}.
+
+### Dependencies
+{{#if DEPENDENCIES}}
+This repository depends on:
+{{DEPENDENCIES}}
+{{else}}
+This repository has no dependencies.
+{{/if}}
+
+### Dependents
+Repositories that depend on this:
+- To be determined
+
+## Version
+
+Current version: {{VERSION}}
+
+## Development
+
+```bash
+# Clone with submodules
+git clone --recursive <repo-url>
+
+# Install dependencies
+make install
+
+# Run tests
+make test
+
+# Build
+make build
+```
+
+## Roadmap
+
+### v{{VERSION}} - Current
+- [ ] Initial implementation
+- [ ] Basic tests
+- [ ] Documentation
+
+### Future Versions
+- TBD based on requirements
+
+## API Documentation
+
+[API documentation will be here]
+
+## Configuration
+
+Configuration is managed through environment variables:
+
+```env
+# Example configuration
+ENV=development
+LOG_LEVEL=debug
+```
+
+## Testing
+
+```bash
+# Unit tests
+make test-unit
+
+# Integration tests
+make test-integration
+
+# All tests
+make test
+```
+
+## Deployment
+
+This service can be deployed using:
+- Docker containers
+- Kubernetes manifests
+- Direct binary deployment
+
+## Contributing
+
+See [Contributing Guidelines](CONTRIBUTING.md)
+
+## License
+
+Private repository - All rights reserved

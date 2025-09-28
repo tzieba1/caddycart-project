@@ -1,0 +1,81 @@
+name: Create Repository
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Repository name (without caddycart- prefix)'
+        required: true
+      type:
+        description: 'Repository type'
+        required: true
+        type: choice
+        options:
+          - core
+          - service
+          - application
+          - infrastructure
+          - tool
+          - documentation
+      description:
+        description: 'Repository description'
+        required: true
+      dependencies:
+        description: 'Dependencies (comma-separated)'
+        required: false
+      version:
+        description: 'Initial version'
+        required: false
+        default: '0.1.0'
+      visibility:
+        description: 'Repository visibility'
+        required: true
+        type: choice
+        options:
+          - private
+          - public
+        default: private
+
+jobs:
+  create-repository:
+    name: Create Repository
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+      
+      - name: Configure git
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+      
+      - name: Create repository
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ./scripts/repo/create.sh \
+            --name "${{ inputs.name }}" \
+            --type "${{ inputs.type }}" \
+            --desc "${{ inputs.description }}" \
+            --deps "${{ inputs.dependencies }}" \
+            --version "${{ inputs.version }}" \
+            --visibility "${{ inputs.visibility }}"
+      
+      - name: Commit changes
+        run: |
+          git add -A
+          git commit -m "feat: add caddycart-${{ inputs.name }} repository"
+          git push origin main
+      
+      - name: Create initial issues
+        run: |
+          ./scripts/issues/create-initial.sh "${{ inputs.name }}" "${{ inputs.type }}"

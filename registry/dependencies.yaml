@@ -1,0 +1,24 @@
+# Dependency Graph - Auto-maintained
+# Updated when repositories declare dependencies
+
+version: 1.0.0
+last_updated: null
+
+graph:
+  nodes: []
+  edges: []
+
+# Format when populated:
+# graph:
+#   nodes:
+#     - id: contracts
+#       type: core
+#       version: 1.0.0
+#     - id: backend
+#       type: service
+#       version: 1.0.0
+#   edges:
+#     - from: backend
+#       to: contracts
+#       version_constraint: "^1.0.0"
+#       type: runtime

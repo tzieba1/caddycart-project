@@ -1,0 +1,81 @@
+# CaddyCart Orchestration Configuration
+version: 1.0.0
+
+project:
+  name: caddycart
+  description: "Multi-repository ecosystem with submodule orchestration"
+  owner: tzieba1
+  mode: personal  # personal | organization
+
+orchestration:
+  use_submodules: true
+  submodule_strategy: sparse  # sparse | full
+  dependency_tracking: true
+  version_strategy: synchronized  # synchronized | independent
+  
+repository_types:
+  core:
+    description: "Core business logic or shared libraries"
+    template: templates/repo/core
+    dependencies_allowed: []
+    can_depend_on_core: false
+    
+  service:
+    description: "Microservice or API service"
+    template: templates/repo/service
+    dependencies_allowed: [core, service]
+    can_depend_on_core: true
+    
+  application:
+    description: "User-facing application (web, mobile, desktop)"
+    template: templates/repo/application
+    dependencies_allowed: [core, service]
+    can_depend_on_core: true
+    
+  infrastructure:
+    description: "Infrastructure, deployment, or DevOps"
+    template: templates/repo/infrastructure
+    dependencies_allowed: []
+    can_depend_on_core: false
+    
+  tool:
+    description: "Development tools, utilities, or scripts"
+    template: templates/repo/tool
+    dependencies_allowed: [core]
+    can_depend_on_core: true
+    
+  documentation:
+    description: "Documentation, guides, or knowledge base"
+    template: templates/repo/documentation
+    dependencies_allowed: []
+    can_depend_on_core: false
+
+dependency_rules:
+  - name: no_circular_dependencies
+    enabled: true
+    severity: error
+    
+  - name: version_compatibility
+    enabled: true
+    severity: error
+    
+  - name: dependency_depth_limit
+    enabled: true
+    max_depth: 3
+    severity: warning
+
+versioning:
+  strategy: semantic  # semantic | calendar | hybrid
+  tag_prefix: v
+  
+  synchronized_release:
+    enabled: false  # Start with independent, move to synchronized
+    repositories: []  # Will be populated as repos are added
+    
+  auto_bump_rules:
+    - commit_pattern: "BREAKING CHANGE|!:"
+      bump: major
+    - commit_pattern: "^feat"
+      bump: minor
+    - commit_pattern: "^fix|^perf"
+      bump: patch

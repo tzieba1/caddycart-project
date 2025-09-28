@@ -1,0 +1,17 @@
+# Repository Registry - Source of Truth
+# Auto-updated when repositories are created
+
+repositories: []
+# Format when populated:
+# repositories:
+#   - name: contracts
+#     full_name: caddycart-contracts
+#     type: core
+#     created: 2024-01-15
+#     version: 0.0.0
+#     status: active
+#     dependencies: []
+#     dependents: []
+#     submodule_path: modules/contracts
+#     github_url: https://github.com/user/caddycart-contracts
+#     description: "Shared contracts and interfaces"

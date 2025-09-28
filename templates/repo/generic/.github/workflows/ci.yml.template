@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Validate structure
+        run: |
+          test -f README.md
+          test -d .github
+          echo "✓ Repository structure valid"
+      
+      - name: Check dependencies
+        if: -f dependencies.yaml
+        run: |
+          # Validate dependency versions
+          echo "Checking dependency versions..."
+  
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: validate
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup environment
+        run: echo "Setting up {{REPO_TYPE}} environment"
+      
+      - name: Run tests
+        run: echo "Tests will be implemented"
+      
+      - name: Coverage report
+        run: echo "Coverage will be reported"
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Build
+        run: echo "Build process for {{REPO_TYPE}}"
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: |
+            dist/
+            build/

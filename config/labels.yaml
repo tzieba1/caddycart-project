@@ -1,0 +1,127 @@
+# Label configuration for all repositories
+labels:
+  # Issue Types
+  - name: "type:feature"
+    color: "0052cc"
+    description: "New feature or enhancement"
+  
+  - name: "type:bug"
+    color: "d73a4a"
+    description: "Something isn't working"
+  
+  - name: "type:documentation"
+    color: "0075ca"
+    description: "Documentation improvements"
+  
+  - name: "type:refactor"
+    color: "ef7c3c"
+    description: "Code refactoring"
+  
+  - name: "type:test"
+    color: "bfd4f2"
+    description: "Test improvements"
+  
+  - name: "type:security"
+    color: "ed3e3e"
+    description: "Security issue or improvement"
+  
+  - name: "type:performance"
+    color: "fb8500"
+    description: "Performance improvement"
+  
+  - name: "type:infrastructure"
+    color: "c5def5"
+    description: "Infrastructure or CI/CD"
+
+  # Priority Levels
+  - name: "priority:critical"
+    color: "b60205"
+    description: "Critical priority - immediate attention"
+  
+  - name: "priority:high"
+    color: "ff6b6b"
+    description: "High priority"
+  
+  - name: "priority:medium"
+    color: "fbca04"
+    description: "Medium priority"
+  
+  - name: "priority:low"
+    color: "0e8a16"
+    description: "Low priority"
+
+  # Status Indicators
+  - name: "status:blocked"
+    color: "d73a4a"
+    description: "Blocked by another issue or external factor"
+  
+  - name: "status:in-progress"
+    color: "fbca04"
+    description: "Currently being worked on"
+  
+  - name: "status:review"
+    color: "0052cc"
+    description: "In review"
+  
+  - name: "status:ready"
+    color: "0e8a16"
+    description: "Ready for next stage"
+
+  # Component Scope
+  - name: "scope:core"
+    color: "5319e7"
+    description: "Core functionality"
+  
+  - name: "scope:api"
+    color: "5319e7"
+    description: "API related"
+  
+  - name: "scope:ui"
+    color: "5319e7"
+    description: "User interface"
+  
+  - name: "scope:database"
+    color: "5319e7"
+    description: "Database related"
+  
+  - name: "scope:auth"
+    color: "5319e7"
+    description: "Authentication/authorization"
+  
+  - name: "scope:infrastructure"
+    color: "5319e7"
+    description: "Infrastructure and deployment"
+
+  # Cross-Repository
+  - name: "cross-repo"
+    color: "8b4789"
+    description: "Affects multiple repositories"
+  
+  - name: "dependency"
+    color: "0366d6"
+    description: "Dependency related"
+  
+  - name: "breaking-change"
+    color: "d73a4a"
+    description: "Breaking change requiring major version"
+
+  # Special Labels
+  - name: "good-first-issue"
+    color: "7057ff"
+    description: "Good for newcomers"
+  
+  - name: "help-wanted"
+    color: "008672"
+    description: "Extra attention needed"
+  
+  - name: "wontfix"
+    color: "ffffff"
+    description: "This will not be worked on"
+  
+  - name: "duplicate"
+    color: "cfd3d7"
+    description: "This issue or pull request already exists"
+  
+  - name: "question"
+    color: "d876e3"
+    description: "Further information is requested"
